@@ -1,0 +1,11 @@
+== SRM 检查 ==
+control 9977 / treatment 10023，p = 0.745
+通过，分组比例正常
+
+== 转化率（下单率）==
+control 9.79% → treatment 11.93%，相对提升 +21.9%
+z = 4.86，p = 1.2e-06
+
+== 人均收入（Welch t 检验）==
+control $6.45 → treatment $7.89
+t = 4.08，p = 4.4e-05

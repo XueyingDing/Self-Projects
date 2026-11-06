@@ -1,0 +1,29 @@
+# dbt 的测试配置：每次跑完模型都自动检查数据质量
+# 真实 dbt 里用 `dbt test` 执行；这里由 run_models.py 读取并执行
+
+models:
+  - name: stg_events
+    columns:
+      - name: event_id
+        tests: [unique, not_null]
+      - name: user_id
+        tests: [not_null]
+      - name: variant
+        tests:
+          - accepted_values: {values: [control, treatment]}
+
+  - name: int_user_assignment
+    columns:
+      - name: user_id
+        tests: [unique, not_null]
+      - name: n_variants
+        tests:
+          - accepted_values: {values: [1]}   # 同一个人不能同时在两组
+
+  - name: fct_experiment_user
+    columns:
+      - name: user_id
+        tests: [unique, not_null]
+      - name: purchased
+        tests:
+          - accepted_values: {values: [0, 1]}
